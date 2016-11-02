@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Traffic lights in Charlotte</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+
+<body>
+<div id='map'></div>
+
+<script>
+// load map
+mapboxgl.accessToken = 'pk.eyJ1IjoibGh5MDIxIiwiYSI6IlJxc2ZxMGcifQ.8f1io4N7S_qsJmbbpXJa7A';
+
+var map = new mapboxgl.Map({
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: [151.1, -33.7],
+  zoom: 16,
+  pitch: 45,
+  container: 'map'
+});
+
+// add layer
+map.on('load', function() {
+
+  map.addSource('zone-source', {
+          type: 'vector',
+          url: 'mapbox://lhy021.bwxz5xdb'
+      });
+
+  	// Add zoning districts layer to map and apply style
+      map.addLayer({
+          'id': 'zones',
+      		'interactive': true,
+          'type': 'fill',
+          'source': 'zone-source',
+          'source-layer': 'lzn-7q232k',
+          'paint': {
+    			'fill-color': {
+    				'property': 'ZONE_',
+    				'type': 'categorical',
+    				'stops': [
+    					['B3', '#e93530'],
+    					['B4', '#967dc9'],
+    					['B5', '#00a251'],
+    					['B6', '#0079c6'],
+    					['E1', '#00b7f1'],
+    					['E3', '#00b050'],
+    					['IN1', '#ffb910'],
+    					['IN2', '#d9dce0'],
+              ['R2', '#d9dce0'],
+              ['R3', '#d9dce0'],
+              ['R4', '#d9dce0'],
+              ['RE1', '#d9dce0'],
+    					['RE2', '#ffea39'],
+              ['SP2', '#d9dce0']
+      				]
+      			},
+    			'fill-opacity': {
+    				'stops': [
+    					[{zoom: 13, value: 0}, 0],
+    					[{zoom: 13, value: 1}, 0.85],
+    					[{zoom: 14, value: 0}, 0],
+    					[{zoom: 14, value: 1}, 0.65]
+      				]
+      			}
+          }
+  	}, 'building');
+
+
+   //
+  map.addSource("streets-data", {
+       type: "vector",
+       url: "mapbox://mapbox.mapbox-streets-v7"
+   });
+   map.addLayer({
+           'id': '3d-buildings',
+           'source': 'streets-data',
+           'source-layer': 'building',
+           'filter': ['==', 'extrude', 'true'],
+           'type': 'fill',
+           'minzoom': 15,
+           'paint': {
+               'fill-color': '#aaa',
+               'fill-extrude-height': {
+                   'type': 'identity',
+                   'property': 'height'
+               },
+               'fill-extrude-base': {
+                   'type': 'identity',
+                   'property': 'min_height'
+               },
+               'fill-opacity': .6
+           }
+       }, 'building');
+});
+
+</script>
+
+</body>
+</html>
