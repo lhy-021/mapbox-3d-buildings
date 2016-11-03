@@ -9,11 +9,54 @@
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
+        .legend {
+            background-color: #fff;
+            border-radius: 3px;
+            bottom: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            padding: 10px;
+            position: absolute;
+            left: 10px;
+            z-index: 1;
+        }
+
+        .legend h4 {
+            margin: 0 0 10px;
+        }
+
+        .legend div span {
+            border-radius: 50%;
+            display: inline-block;
+            height: 10px;
+            margin-right: 5px;
+            width: 10px;
+        }
     </style>
 </head>
 
 <body>
 <div id='map'></div>
+<div class="features">
+
+</div>
+<div class="legend">
+  <h4>Zone</h4>
+  <div><span style='background-color: #00C2ED'></span>B3</div>
+  <div><span style='background-color: #959dc2'></span>B4</div>
+  <div><span style='background-color: #7da0ab'></span>B5</div>
+  <div><span style='background-color: #95bfcc'></span>B6</div>
+  <div><span style='background-color: #e69900'></span>E1</div>
+  <div><span style='background-color: #f7c568'></span>E3</div>
+  <div><span style='background-color: #deb8f5'></span>IN1</div>
+  <div><span style='background-color: #f3dbff'></span>IN2</div>
+  <div><span style='background-color: #ffa6a3'></span>R2</div>
+  <div><span style='background-color: #ff776e'></span>R3</div>
+  <div><span style='background-color: #ff483b'></span>R4</div>
+  <div><span style='background-color: #55ff00'></span>RE1</div>
+  <div><span style='background-color: #d3ffbe'></span>RE2</div>
+  <div><span style='background-color: #ffff70'></span>SP2</div>
+</div>
 
 <script>
 // load map
@@ -99,6 +142,7 @@ map.on('load', function() {
        }
 	}, '3d-buildings');
 });
+
 
 </script>
 
