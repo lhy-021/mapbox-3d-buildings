@@ -9,22 +9,31 @@
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
+        .features{
+          background-color: rgba(255, 255, 255, 0.7);
+          border-radius: 3px;
+          top: 10px;
+          left: 10px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+          font: 10px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+          padding: 10px;
+          position: absolute;
+          z-index: 1;
+        }
+        .features h2 {
+            margin: 0 0 5px;
+        }
         .legend {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 3px;
             bottom: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font: 10px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             padding: 10px;
             position: absolute;
             left: 10px;
             z-index: 1;
         }
-
-        .legend h4 {
-            margin: 0 0 10px;
-        }
-
         .legend div span {
             border-radius: 50%;
             display: inline-block;
@@ -38,24 +47,27 @@
 <body>
 <div id='map'></div>
 <div class="features">
-
+  <h2>Hornsby Zoning Map</h2>
+  <div>
+    The zoning information is sourced from the Department of Planning<br>
+     Open Portal. Mapping API used is Mapbox GL JS.
+  </div>
 </div>
 <div class="legend">
-  <h4>Zone</h4>
-  <div><span style='background-color: #00C2ED'></span>B3</div>
-  <div><span style='background-color: #959dc2'></span>B4</div>
-  <div><span style='background-color: #7da0ab'></span>B5</div>
-  <div><span style='background-color: #95bfcc'></span>B6</div>
-  <div><span style='background-color: #e69900'></span>E1</div>
-  <div><span style='background-color: #f7c568'></span>E3</div>
-  <div><span style='background-color: #deb8f5'></span>IN1</div>
-  <div><span style='background-color: #f3dbff'></span>IN2</div>
-  <div><span style='background-color: #ffa6a3'></span>R2</div>
-  <div><span style='background-color: #ff776e'></span>R3</div>
-  <div><span style='background-color: #ff483b'></span>R4</div>
-  <div><span style='background-color: #55ff00'></span>RE1</div>
-  <div><span style='background-color: #d3ffbe'></span>RE2</div>
-  <div><span style='background-color: #ffff70'></span>SP2</div>
+  <div><span style='background-color: #00C2ED'></span>Commercial Core</div>
+  <div><span style='background-color: #959dc2'></span>Mixed Use</div>
+  <div><span style='background-color: #7da0ab'></span>Business Development</div>
+  <div><span style='background-color: #95bfcc'></span>Enterprise Corridor</div>
+  <div><span style='background-color: #e69900'></span>Nature Reserves</div>
+  <div><span style='background-color: #f7c568'></span>Environmental Conservation</div>
+  <div><span style='background-color: #deb8f5'></span>General Industrial</div>
+  <div><span style='background-color: #f3dbff'></span>Light Industrial</div>
+  <div><span style='background-color: #ffa6a3'></span>Low Density Residential</div>
+  <div><span style='background-color: #ff776e'></span>Medium Density Residential</div>
+  <div><span style='background-color: #ff483b'></span>High Density Residential</div>
+  <div><span style='background-color: #55ff00'></span>Public Recreation</div>
+  <div><span style='background-color: #d3ffbe'></span>Private Recreation</div>
+  <div><span style='background-color: #ffff70'></span>Infrastructure</div>
 </div>
 
 <script>
@@ -94,7 +106,7 @@ map.on('load', function() {
                'type': 'identity',
                'property': 'min_height'
            },
-           'fill-opacity': .8
+           'fill-opacity': .7
          }
     }, 'building');
 // add zoning source
